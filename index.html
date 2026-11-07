@@ -1,27 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Chota Bheem Game</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Chota Bheem Loves Ladoo</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="gameContainer">
-        <canvas id="mycanvas"></canvas>
-        <div id="gameOverContainer">
-            <h1 id="gameOverText">Game Over!</h1>
-            <button id="restartButton">Restart</button>
-            <button id="quitButton">Quit Game</button>
-        </div>
+    <canvas id="mycanvas"></canvas>
+
+    <div id="hudButtons">
+        <button class="icon-btn" id="pauseBtn" title="Pause (P)" aria-label="Pause">&#10074;&#10074;</button>
+        <button class="icon-btn" id="muteBtn" title="Mute (M)" aria-label="Mute">&#128266;</button>
     </div>
-    <div id="startContainer">
-        <h1 id="gameTitle">Chota Bheem loves Ladoo</h1>
-        <button id="startButton">Start Game</button>
-        <div id="gifContainer">
-            <img src="images/bheemLadoo.gif" alt="Eating GIF">
+
+    <div class="screen" id="startContainer">
+        <h1 class="title">Chota Bheem loves Ladoo</h1>
+        <img id="startGif" src="images/bheemLadoo.gif" alt="Bheem eating a ladoo">
+        <p>Collect ladoos, dodge the Kirmadas chasing you. Every 5 ladoos is a new level. Golden ladoos are worth more and give back a heart!</p>
+        <p class="best">Best score: <span id="bestStart">0</span></p>
+        <button class="btn" id="startButton">Start Game</button>
+        <p class="hint"><kbd>&larr;</kbd><kbd>&uarr;</kbd><kbd>&darr;</kbd><kbd>&rarr;</kbd> or <kbd>WASD</kbd> to move &middot; on touch screens drag your finger &middot; <kbd>P</kbd> pause &middot; <kbd>M</kbd> mute</p>
+    </div>
+
+    <div class="screen" id="pauseContainer" hidden>
+        <h1 class="title">Paused</h1>
+        <div class="row">
+            <button class="btn" id="resumeButton">Resume</button>
+            <button class="btn secondary" id="restartButton1">Restart</button>
+            <button class="btn secondary" id="menuButton1">Menu</button>
         </div>
     </div>
 
-    <audio id="bgMusic" src="music/bgm.mp3" preload="auto"></audio>
+    <div class="screen" id="gameOverContainer" hidden>
+        <h1 class="title" id="gameOverText">Game Over!</h1>
+        <p class="best" id="gameOverInfo"></p>
+        <div class="row">
+            <button class="btn" id="restartButton">Play again</button>
+            <button class="btn secondary" id="menuButton">Menu</button>
+        </div>
+        <p class="hint">Press <kbd>R</kbd> or <kbd>Enter</kbd> to play again</p>
+    </div>
+
+    <p id="disclaimer">Non-commercial fan-made practice game. Characters belong to their respective owners.</p>
+
+    <audio id="bgMusic" src="music/bgm.mp3" preload="auto" loop></audio>
     <audio id="eatSound" src="music/eat.mp3" preload="auto"></audio>
 
     <script src="script.js"></script>

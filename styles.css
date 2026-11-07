@@ -1,80 +1,118 @@
-body {
+* { box-sizing: border-box; }
+
+html, body {
     margin: 0;
     padding: 0;
+    height: 100%;
     overflow: hidden;
-    font-family: Arial, sans-serif;
-    background-image: url(images/space.gif);
-    background-color: #222;
-}
-
-#gameContainer {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    background: #111 url(images/space.gif);
+    color: #fff;
+    overscroll-behavior: none;
 }
 
 canvas {
-    display: none;
+    display: block;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    touch-action: none;
 }
 
-#gameOverContainer {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 999;
-}
-
-#gameOverText {
-    font-size: 40px;
-    color: white;
-    margin-bottom: 20px;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 20px;
-    color: white;
-    background-color: #333;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-
-button:focus {
-    outline: none;
-}
-
-#startContainer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.screen {
+    position: fixed;
+    inset: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 999;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.72);
+    z-index: 10;
 }
 
-#gameTitle {
-    font-size: 40px;
-    color: white;
-    margin-bottom: 20px;
+.screen[hidden] { display: none; }
+
+.title {
+    margin: 0;
+    font-size: clamp(26px, 6vw, 48px);
+    color: #ffcc33;
+    text-shadow: 3px 3px 0 #b3400b;
 }
 
-#gifContainer {
-    display: block;
-    margin-top: 20px;
+.screen p {
+    margin: 0;
+    max-width: 560px;
+    font-size: clamp(14px, 2.5vw, 18px);
+    line-height: 1.4;
+}
+
+.screen .best { font-size: clamp(16px, 3vw, 22px); color: #ffe08a; }
+.screen .hint { font-size: 13px; opacity: 0.85; }
+
+#startGif {
+    max-width: min(260px, 60vw);
+    max-height: 30vh;
+    border-radius: 12px;
+}
+
+.row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+
+.btn {
+    font: inherit;
+    font-size: clamp(16px, 3vw, 20px);
+    padding: 10px 26px;
+    color: #fff;
+    background: #ff8c1a;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #b35900;
+}
+
+.btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #b35900; }
+.btn.secondary { background: #3d4a8a; box-shadow: 0 4px 0 #222b5c; }
+
+kbd {
+    background: #333;
+    border: 1px solid #777;
+    border-radius: 4px;
+    padding: 1px 6px;
+    margin: 0 1px;
+}
+
+#hudButtons {
+    position: fixed;
+    top: 44px;
+    right: 10px;
+    display: flex;
+    gap: 8px;
+    z-index: 5;
+}
+
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 17px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#disclaimer {
+    position: fixed;
+    bottom: 4px;
+    left: 0;
+    right: 0;
+    margin: 0;
+    font-size: 11px;
+    text-align: center;
+    opacity: 0.55;
+    z-index: 20;
+    pointer-events: none;
 }

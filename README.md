@@ -8,18 +8,27 @@ This is a non-commercial, fan-made practice game and the follow-up to [basic-bhe
 
 ## How to play
 
-- Click **Start Game**, then move with the arrow keys (on touch screens, tap the left or right half of the screen).
-- Each ladoo adds 10 points (capped at 200); the ladoo then reappears somewhere else.
-- Enemies chase you with some random wobble. Touching one drains your score; at zero the game is over.
-- Reaching score milestones raises the level, and enemies get faster each level.
+- Click **Start Game** (or press `Enter`).
+- Move with the arrow keys or `WASD`. On touch screens (or with the mouse), press and drag: Bheem walks towards your finger.
+- Each ladoo is worth `10 x level` points. Every 5th ladoo is **golden**: `50 x level` points and +1 heart (up to 5).
+- Kirmadas chase you with a wobble. Touching one costs a heart (you blink briefly while invulnerable). Lose all hearts and the game is over.
+- Every 5 ladoos you level up: enemies get faster and more of them appear.
+
+| Key | Action |
+|-----|--------|
+| Arrows / `WASD` | Move |
+| `P` / `Esc` | Pause / resume |
+| `M` | Mute / unmute |
+| `R` / `Enter` | Restart / start |
 
 ## Features
 
-- Full-window canvas that resizes with the browser
-- Scrolling animated background, background music and an eating sound effect
-- Level progression with increasing enemy speed
+- Full-window canvas that resizes with the browser and stays sharp on high-DPI screens
+- Scrolling space background, background music and an eating sound effect (music only starts after you press Start; mute toggle is remembered)
+- Hearts, golden ladoos, level progression with a difficulty ramp and a level progress bar
 - All-time high score saved in `localStorage`
-- Start, Game Over, Restart and Quit screens
+- Start, pause, game-over and menu screens
+- Frame-rate-independent movement (`requestAnimationFrame` + delta time)
 
 ## Tech stack
 
@@ -34,13 +43,13 @@ cd Bheem-Ladoo-2
 npx serve .
 ```
 
-Or open `index.html` directly in a browser. Some browsers only start audio after a click, which the Start button provides.
+Or open `index.html` directly in a browser.
 
 ## Project structure
 
 ```
-index.html   # start screen, canvas, game-over overlay
-script.js    # game loop, movement, enemies, levels, high score
+index.html   # canvas and start / pause / game-over screens
+script.js    # game loop, movement, enemies, levels, sound, high score
 styles.css   # layout and screens
 images/      # sprites and backgrounds
 music/       # background music and sound effect
